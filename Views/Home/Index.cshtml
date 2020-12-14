@@ -1,8 +1,55 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<Producto>
+
+@{
+    ViewData["Title"] = "Productos";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<a class="btn btn-success" role="button" asp-action="Registrar">Registrar</a><hr>
+
+<table class="table">
+        <tr>
+            <th scope="col">
+                nombreProducto
+            </th>
+            <th scope="col">
+                descripcion
+            </th>
+            <th scope="col">
+                precio
+            </th>
+            <th scope="col">
+                celular
+            </th>
+            <th scope="col">
+                direccion
+            </th>
+            <th scope="col">
+                nombreUsuario
+            </th>
+        </tr>
+        @if (Model.Count == 0) {
+            <tr>
+                <td colspan="4" class="text-center">No se encontraron registros.</td>
+            </tr>
+        }
+        @foreach (var contacto in Model) 
+        {
+            <tr>
+                <td>@contacto.nombreProducto</td>
+                <td>
+                    <img src="/img/chefcito.jpg" alt="" height="100" width="100">
+                    @contacto.descripcion
+                </td>
+                <td>@contacto.precio</td>
+                <td>@contacto.celular</td>
+                <td>@contacto.direccion</td>
+                <td>@contacto.nombreUsuario</td>
+                <td>
+                    <form asp-action="Eliminar" method="post">
+                        <input type="hidden" name="id" value="@contacto.id" />
+                        <button class="btn btn-danger">Borrar</button>
+                    </form>                    
+                </td>
+            </tr>
+        }
+    </table>

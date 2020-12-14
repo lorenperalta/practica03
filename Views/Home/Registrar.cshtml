@@ -1,0 +1,41 @@
+@model practica03.Models.Producto
+
+<div class="container">
+    <div class="row">
+        <form asp-action="Ingresar">
+            <div class="form-group">
+                <label asp-for="nombreProducto" class="control-label"></label>
+                <input asp-for="nombreProducto" class="form-control">
+                <span asp-validation-for="nombreProducto" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="descripcion" class="control-label"></label>
+                <input asp-for="descripcion" class="form-control">
+                <span asp-validation-for="descripcion" class="text-danger"></span>
+            </div><hr>
+            <div>
+                <label asp-for="precio" class="control-label"></label>
+                <input asp-for="precio" class="form-control">
+                <span asp-validation-for="precio" class="text-danger"></span>
+            </div><hr>
+            <div>
+                <label asp-for="celular" class="control-label"></label>
+                <input asp-for="celular" class="form-control">
+                <span asp-validation-for="celular" class="text-danger"></span>
+            </div><hr>
+            <div>
+                <label asp-for="direccion" class="control-label"></label>
+                <input asp-for="direccion" class="form-control">
+                <span asp-validation-for="direccion" class="text-danger"></span>
+            </div><hr>
+            <div>
+                <label asp-for="nombreUsuario" class="control-label"></label>
+                <input asp-for="nombreUsuario" class="form-control">
+                <span asp-validation-for="nombreUsuario" class="text-danger"></span>
+            </div><hr>
+            <div>
+                <button class="btn btn-success">Registrar producto</button>
+            </div>
+        </form>
+    </div>
+</div>

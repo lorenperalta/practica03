@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using practica03.Data;
 using practica03.Models;
 
 namespace practica03.Controllers
@@ -12,15 +13,48 @@ namespace practica03.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
+            var registro = _context.Registrar.ToList();
+            return View(registro);
+        }
+
+        public IActionResult Registrar()
+        {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Ingresar(Producto p)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(p);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            return View("Registrar", p);
+        }
+
+        [HttpPost]
+        public IActionResult Eliminar(int id) {
+
+            // Búsqueda del objeto que se quiere borrar usando el id
+            var contacto = _context.Registrar.FirstOrDefault(x => x.id == id);
+
+            _context.Remove(contacto);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

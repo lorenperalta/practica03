@@ -2,12 +2,13 @@
 
 @{
     ViewData["Title"] = "Productos";
+    var count = 1;
 }
 
-<a class="btn btn-success" role="button" asp-action="Registrar">Registrar</a><hr>
+<!--<a class="btn btn-success" role="button" asp-action="Registrar">Registrar</a>-->
 
-<table class="table">
-        <tr>
+<table class="table" id="dtBasicExample">
+        <tr class="table-success">
             <th scope="col">
                 nombreProducto
             </th>
@@ -26,24 +27,35 @@
             <th scope="col">
                 nombreUsuario
             </th>
+            <th></th>
         </tr>
         @if (Model.Count == 0) {
             <tr>
-                <td colspan="4" class="text-center">No se encontraron registros.</td>
+                <td colspan="4" class="text-center">No se han encontrado registros. <br>Ingrese registros porfavor.</td>
             </tr>
         }
         @foreach (var contacto in Model) 
         {
             <tr>
-                <td>@contacto.nombreProducto</td>
                 <td>
-                    <img src="/img/chefcito.jpg" alt="" height="100" width="100">
+                    @contacto.nombreProducto
+                </td>
+                <td>
+                    
                     @contacto.descripcion
                 </td>
-                <td>@contacto.precio</td>
-                <td>@contacto.celular</td>
-                <td>@contacto.direccion</td>
-                <td>@contacto.nombreUsuario</td>
+                <td>
+                    @contacto.precio
+                </td>
+                <td>
+                    @contacto.celular
+                </td>
+                <td>
+                    @contacto.direccion
+                </td>
+                <td>
+                    @contacto.nombreUsuario
+                </td>
                 <td>
                     <form asp-action="Eliminar" method="post">
                         <input type="hidden" name="id" value="@contacto.id" />
@@ -51,5 +63,22 @@
                     </form>                    
                 </td>
             </tr>
+            count++;
         }
-    </table>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">
+          
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+    

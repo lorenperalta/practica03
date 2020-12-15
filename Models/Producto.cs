@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -40,6 +41,7 @@ namespace practica03.Models
         [Column("nombreUsuario")]
         [Required(ErrorMessage="Porfavor ingrese un nombre de usuario")]
         public string nombreUsuario { get; set; }
+        
     }
 
 }

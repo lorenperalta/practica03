@@ -23,7 +23,10 @@ namespace practica03.Controllers
 
         public IActionResult Index()
         {
-            var registro = _context.Registrar.ToList();
+            DateTime fecha = DateTime.Today;
+            fecha = fecha.AddDays(+1);
+            DateTime ayer = fecha.AddDays(-7);
+            var registro = _context.Registrar.Where(x => x.date>=ayer && x.date<=fecha).ToList();
             return View(registro);
         }
 
@@ -47,13 +50,9 @@ namespace practica03.Controllers
 
         [HttpPost]
         public IActionResult Eliminar(int id) {
-
-            // Búsqueda del objeto que se quiere borrar usando el id
             var contacto = _context.Registrar.FirstOrDefault(x => x.id == id);
-
             _context.Remove(contacto);
             _context.SaveChanges();
-
             return RedirectToAction("Index");
         }
 

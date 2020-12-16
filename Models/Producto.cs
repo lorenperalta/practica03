@@ -41,6 +41,10 @@ namespace practica03.Models
         [Column("nombreUsuario")]
         [Required(ErrorMessage="Porfavor ingrese un nombre de usuario")]
         public string nombreUsuario { get; set; }
+
+        [Display(Name="fecha: ")]
+        [Required(ErrorMessage="Porfavor ingrese una fecha")]
+        public DateTime date { get; set; }
         
     }
 
